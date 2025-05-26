@@ -1,0 +1,272 @@
+/* style.css */
+
+/* -------------------- */
+/* VARIABLES CSS        */
+/* -------------------- */
+:root {
+    --primary-color: #bb0e0e; /* Rosa pastel */
+    --secondary-color: #4e1270; /* Morado medio */
+    --accent-color: #e8eb45; /* Rosa claro (LightPink) */
+    --background-color: #84c0e2; /* LavenderBlush - un fondo muy suave */
+    --text-color: #333;
+    --card-background: #ffffff;
+    --border-color: #ddd;
+    --font-family-base: 'Arial', sans-serif;
+    --font-family-headings: 'Georgia', serif;
+    --box-shadow-light: 0 2px 5px rgba(0,0,0,0.1);
+    --box-shadow-strong: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* -------------------- */
+/* RESET BÁSICO Y GENERALES */
+/* -------------------- */
+* {
+    box-sizing: border-box; /* "Hack" CSS común para mejor manejo de padding y border */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-base);
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0; /* Eliminamos el margen del body para que header y footer ocupen todo el ancho */
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto; /* Centra el contenido principal */
+    padding: 20px;
+    background-color: transparent; /* Hacemos el contenedor transparente para que se vea el body bg */
+}
+
+img.recipe-image { /* Selector de elemento con clase */
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: var(--box-shadow-light);
+}
+
+/* Enlaces */
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover, a:focus { /* Pseudo-clases */
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a.external-link[target="_blank"] { /* Selector de atributo */
+    /* Pequeño "hack" visual para enlaces externos */
+    padding-right: 18px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a4baf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'%3e%3c/path%3e%3cpolyline points='15 3 21 3 21 9'%3e%3c/polyline%3e%3cline x1='10' y1='14' x2='21' y2='3'%3e%3c/line%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 12px 12px; /* Ajustar tamaño del icono */
+}
+a.external-link[target="_blank"]:hover {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'%3e%3c/path%3e%3cpolyline points='15 3 21 3 21 9'%3e%3c/polyline%3e%3cline x1='10' y1='14' x2='21' y2='3'%3e%3c/line%3e%3c/svg%3e"); /* Cambia color del icono en hover */
+}
+
+
+/* -------------------- */
+/* CABECERA (HEADER)    */
+/* -------------------- */
+.main-header { /* Selector de clase */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2em 1em; /* Unidades relativas para padding */
+    text-align: center;
+    border-bottom: 5px solid var(--secondary-color);
+}
+
+.main-header h1 {
+    font-family: var(--font-family-headings);
+    margin-bottom: 0.25em;
+    font-size: 2.5rem; /* Unidad rem para accesibilidad */
+    color: white; /* Sobrescribimos color por si acaso */
+}
+
+.main-header .tagline { /* Selector descendente */
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+/* -------------------- */
+/* NAVEGACIÓN (NAV)     */
+/* -------------------- */
+.main-nav {
+    background-color: var(--secondary-color);
+    padding: 0.8em 0;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.main-nav ul li {
+    display: inline-block; /* Elementos en línea pero con propiedades de bloque */
+    margin: 0 15px;
+}
+
+.main-nav ul li a {
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Función CSS: transition */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a:focus {
+    background-color: var(--primary-color);
+    text-decoration: none; /* Quitar subrayado que pusimos por defecto */
+}
+
+/* -------------------- */
+/* CONTENIDO PRINCIPAL (MAIN) */
+/* -------------------- */
+.recipe-card { /* Selector de clase */
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px; /* Unidad en píxeles */
+    margin-bottom: 30px; /* Margen entre tarjetas */
+    box-shadow: var(--box-shadow-strong);
+    /* Un "hack" CSS para asegurar que el contenido flotante (si lo hubiera) esté contenido.
+       Aunque aquí no usamos floats, es un ejemplo de "clearfix hack" conceptualmente.
+       Para display: block; no es estrictamente necesario, pero no daña. */
+    overflow: hidden; 
+}
+
+.recipe-card h2 {
+    font-family: var(--font-family-headings);
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--accent-color);
+    display: flex; /* Para alinear el badge */
+    justify-content: space-between; /* Para alinear el badge */
+    align-items: center; /* Para alinear el badge */
+}
+
+.recipe-card h3 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: var(--font-family-headings);
+    font-size: 1.3em;
+}
+
+/* Formateo de texto específico */
+.recipe-card p strong {
+    color: var(--secondary-color);
+}
+.recipe-card p em {
+    font-style: italic;
+    color: var(--primary-color);
+}
+
+/* Listas */
+.recipe-card ul, .recipe-card ol {
+    margin-left: 25px; /* Unidades: píxeles */
+    padding-left: 15px;
+}
+
+.recipe-card li {
+    margin-bottom: 8px; /* Unidades: píxeles */
+}
+
+.recipe-tip {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-style: italic;
+    border-left: 5px solid var(--secondary-color);
+}
+
+.difficulty-badge {
+    font-size: 0.75rem;
+    padding: 0.3em 0.6em;
+    border-radius: 10px;
+    color: white;
+    font-weight: normal;
+    font-family: var(--font-family-base);
+}
+
+.difficulty-badge.easy { /* Clasificador/selector de clase múltiple */
+    background-color: #28a745; /* Verde */
+}
+.difficulty-badge.medium {
+    background-color: #fd7e14; /* Naranja */
+}
+.difficulty-badge.hard { /* Aunque no se usa, para demostración */
+    background-color: #dc3545; /* Rojo */
+}
+
+
+/* -------------------- */
+/* PIE DE PÁGINA (FOOTER) */
+/* -------------------- */
+.main-footer {
+    background-color: #333; /* Color hexadecimal */
+    color: #f4f4f4; /* Color hexadecimal */
+    text-align: center;
+    padding: 1.5em 1em; /* Unidades relativas */
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.main-footer p {
+    margin-bottom: 0.5em;
+}
+
+.main-footer a {
+    color: var(--accent-color);
+}
+
+.main-footer a:hover {
+    color: white;
+}
+
+#last-updated { /* Selector de ID */
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* -------------------- */
+/* MEDIA QUERIES (Ejemplo básico para responsividad) */
+/* -------------------- */
+@media (max-width: 768px) { /* Para pantallas más pequeñas */
+    .main-nav ul li {
+        display: block; /* Un elemento por línea */
+        margin: 10px 0;
+    }
+
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .main-header h1 {
+        font-size: 2rem;
+    }
+
+    .recipe-card h2 {
+        font-size: 1.5rem;
+        flex-direction: column; /* Apila título y badge en móvil */
+        align-items: flex-start;
+    }
+    .difficulty-badge {
+        margin-top: 5px;
+    }
+}
